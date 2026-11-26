@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Godfrey Mulbah | Computer Science Student</title>
+  <meta name="description" content="Portfolio of Godfrey Mulbah, a computer science student building web projects and learning software engineering.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+/* ---------- Design tokens: change colors and fonts here ---------- */
+:root {
+  --paper: #edf0f5;
+  --ink: #16213a;
+  --muted: #566074;
+  --cobalt: #2d5be3;
+  --signal: #ffd84d;
+  --line: #cfd6e3;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-code: "IBM Plex Mono", Consolas, monospace;
+
+  --max: 960px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--cobalt);
+}
+
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main,
+.site-header,
+.site-footer {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding: 1.5rem 0;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-header nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.site-header nav a:hover {
+  border-bottom-color: var(--signal);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 0 5rem;
+}
+
+.hero h1 {
+  font-size: clamp(3.5rem, 11vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  max-width: 34ch;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--signal);
+  border-color: var(--ink);
+}
+
+/* The one memorable element: the code block */
+.code-block {
+  margin: 0;
+  padding: 1.75rem;
+  background: var(--ink);
+  color: #dfe6f5;
+  border-radius: 10px;
+  border-left: 8px solid var(--signal);
+  font-family: var(--font-code);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  animation: rise 0.7s ease-out both;
+}
+
+.c-key { color: #8fb0ff; }
+.c-var { color: var(--signal); }
+.c-prop { color: #bcd0ff; }
+.c-str { color: #9be3b0; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.section > h2 {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
+}
+
+.prose {
+  max-width: 62ch;
+}
+
+/* Skills */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2rem;
+}
+
+.skill-group h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.skill-group li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Projects */
+.project {
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--cobalt);
+  max-width: 68ch;
+}
+
+.project h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.project .stack {
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.project .links {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Education */
+.entry h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Contact */
+.contact .lead {
+  margin-bottom: 1.5rem;
+}
+
+.contact-list li {
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .code-block {
+    font-size: 0.85rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .code-block {
+    animation: none;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top">Godfrey Mulbah</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Godfrey<br>Mulbah</h1>
+        <p class="lead">Computer science student who builds practical web projects and enjoys solving problems with code.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">See my projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <pre class="code-block" aria-label="Short summary written as code"><code><span class="c-key">const</span> <span class="c-var">godfrey</span> = {
+  <span class="c-prop">role</span>: <span class="c-str">"Computer Science student"</span>,
+  <span class="c-prop">focus</span>: [<span class="c-str">"web development"</span>, <span class="c-str">"problem solving"</span>],
+  <span class="c-prop">learning</span>: <span class="c-str">"data structures and algorithms"</span>,
+  <span class="c-prop">lookingFor</span>: <span class="c-str">"internships and collaborations"</span>,
+};</code></pre>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About me</h2>
+      <div class="prose">
+        <p>I'm Godfrey, a computer science student. I like turning an idea into something that works in the browser, and I'm always trying to understand how things work underneath.</p>
+        <p>Outside lectures I build small projects, practise coding problems, and learn new tools. I'm looking for opportunities to work on real software with a team and grow as a developer.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Java</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git and GitHub</li>
+            <li>VS Code</li>
+            <li>Command line</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Computer science</h3>
+          <ul>
+            <li>Data structures</li>
+            <li>Algorithms</li>
+            <li>Databases</li>
+            <li>Object-oriented programming</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+
+      <article class="project">
+        <h3>Project one: replace with your project name</h3>
+        <p>Describe what it does and who it helps in one or two sentences. Mention the problem you solved.</p>
+        <p class="stack">HTML, CSS, JavaScript</p>
+        <p class="links"><a href="#">View code</a> <a href="#">Live demo</a></p>
+      </article>
+
+      <article class="project">
+        <h3>Project two: replace with your project name</h3>
+        <p>Explain what you built and what you learned while building it.</p>
+        <p class="stack">Python</p>
+        <p class="links"><a href="#">View code</a></p>
+      </article>
+
+      <article class="project">
+        <h3>Project three: replace with your project name</h3>
+        <p>A class assignment, a personal tool or a team project all count. Say what your part was.</p>
+        <p class="stack">Java</p>
+        <p class="links"><a href="#">View code</a></p>
+      </article>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="entry">
+          <h3>BSc in Computer Science</h3>
+          <p>Your university name, expected graduation year</p>
+          <p class="muted">Relevant courses: Programming, Data Structures, Databases, Web Development</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <h2>Let's work together</h2>
+      <p class="lead">I'm open to internships, student projects and collaborations. Send me a message and I'll reply as soon as I can.</p>
+      <ul class="contact-list">
+        <li><a href="mailto:your.email@example.com">your.email@example.com</a></li>
+        <li><a href="https://github.com/your-username">github.com/your-username</a></li>
+        <li><a href="https://www.linkedin.com/in/your-username">linkedin.com/in/your-username</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Godfrey Mulbah</p>
+  </footer>
+
+</body>
+</html>
